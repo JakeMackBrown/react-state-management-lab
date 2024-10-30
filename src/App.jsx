@@ -102,6 +102,23 @@ const handleAddFighter = (fighter) => {
             </li>
           ))}
       </ul>
+
+      <h2>Team</h2>
+      {team.length === 0 ? (
+        <div>Pick some team members!</div>
+      ) : (
+        <ul className="team-list">
+          {team.map((member, index) => (
+            <li key={index} className="team-member">
+              <img src={member.img} alt={member.name} />
+              <div>Name: {member.name}</div>
+              <div>Price: {member.price}</div>
+              <div>Strength: {member.strength}</div>
+              <div>Agility: {member.agility}</div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
