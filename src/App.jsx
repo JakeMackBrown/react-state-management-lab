@@ -78,9 +78,14 @@ const App = () => {
     ]);
 
 const [totalStrength, setTotalStrength] = useState(0);
+const [totalAgility, setTotalAgility] = useState(0);
 
 const calculateTotalStrength = (team) => {
   return team.reduce((total, fighter) => total + fighter.strength, 0)
+};
+
+const calculateTotalAgility = (team) => {
+  return team.reduce((total, fighter) => total + fighter.agility, 0)
 };
 
 const handleAddFighter = (fighter) => {
@@ -89,6 +94,7 @@ const handleAddFighter = (fighter) => {
     setTeam(newTeam);
     setMoney(money - fighter.price);
     setTotalStrength(calculateTotalStrength(newTeam));
+    setTotalAgility(calculateTotalAgility(newTeam));
   } else {
     console.log('Not enough money')
   }
@@ -99,6 +105,7 @@ const handleAddFighter = (fighter) => {
       <h1>Zombie Fighters</h1>
       <div>Money: ${money}</div>
       <div>Total Team Strength: {totalStrength}</div>
+      <div>Total Team Agility: {totalAgility}</div>
       <ul className="zombie-fighters-list">
           {zombieFighters.map((fighter, index) => (
             <li key={index} className="zombie-fighter">
