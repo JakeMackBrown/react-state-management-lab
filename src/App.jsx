@@ -78,9 +78,21 @@ const App = () => {
     ])
 
   return (
-    <div>
+    <div className="ZombieBuilder">
       <h1>Zombie Fighters</h1>
-      </div>
+      <ul className="zombie-fighters-list">
+          {zombieFighters.map((fighter, index) => (
+            <li key={index} className="zombie-fighter">
+              <img src={fighter.img} alt={fighter.name} />
+              <div>Name: {fighter.name}</div>
+              <div>Price: {fighter.price}</div>
+              <div>Strength: {fighter.strength}</div>
+              <div>Agility: {fighter.agility}</div>
+              <button>Add</button>
+            </li>
+            ))}
+      </ul>
+    </div>
   );
 }
 
