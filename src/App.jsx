@@ -75,7 +75,16 @@ const App = () => {
         agility: 6,
         img: 'https://via.placeholder.com/150/602b9e',
       },
-    ])
+    ]);
+
+const handleAddFighter = (fighter) => {
+  if (money >= fighter.price) {
+    setTeam([...team, fighter]);
+    setMoney(money - fighter.price);
+  } else {
+    console.log('Not enough money')
+  }
+}
 
   return (
     <div className="ZombieBuilder">
@@ -89,9 +98,9 @@ const App = () => {
               <div>Price: {fighter.price}</div>
               <div>Strength: {fighter.strength}</div>
               <div>Agility: {fighter.agility}</div>
-              <button>Add</button>
+              <button onClick={() => handleAddFighter(fighter)}>Add</button>
             </li>
-            ))}
+          ))}
       </ul>
     </div>
   );
