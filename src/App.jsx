@@ -100,6 +100,28 @@ const handleAddFighter = (fighter) => {
   }
 }
 
+// const handleRemoveFighter = (fighter) => {
+//   const newTeam = team.filter((member) => member !== fighter);
+//   setTeam(newTeam);
+//   setMoney(money + fighter.price);
+//   setTotalStrength(calculateTotalStrength(newTeam));
+//   setTotalAgility(calculateTotalAgility (newTeam));
+// }
+
+//^^^ The only problem with what I put above is that when I selected several of the same fighter for the team and clicked remove on one of them, it removed ALL of the matching members simultaneosly, and only refunded the amount for one of them. So it leaves you with no one on your team, but less than $100.  I could not figure out how to fix this.  Asked ChatGPT about this, and it advised to use index instead of the fighter/member object as outlined below, also adjusting the remove fighter button to correspond with index.
+
+
+const handleRemoveFighter = (index) => {
+  const fighter = team[index];
+  const newTeam = team.filter((_, i) => i !== index);
+  setTeam(newTeam);
+  setMoney(money + fighter.price);
+  setTotalStrength(calculateTotalStrength(newTeam));
+  setTotalAgility(calculateTotalAgility(newTeam));
+};
+
+
+
   return (
     <div className="ZombieBuilder">
       <h1>Zombie Fighters</h1>
@@ -114,7 +136,7 @@ const handleAddFighter = (fighter) => {
               <div>Price: {fighter.price}</div>
               <div>Strength: {fighter.strength}</div>
               <div>Agility: {fighter.agility}</div>
-              <button onClick={() => handleAddFighter(fighter)}>Add</button>
+              <button onClick={() => handleAddFighter(fighter)}>Add</button> 
             </li>
           ))}
       </ul>
@@ -131,6 +153,7 @@ const handleAddFighter = (fighter) => {
               <div>Price: {member.price}</div>
               <div>Strength: {member.strength}</div>
               <div>Agility: {member.agility}</div>
+              <button onClick={() => handleRemoveFighter(index)}>Remove</button>
             </li>
           ))}
         </ul>
