@@ -80,6 +80,7 @@ const App = () => {
   return (
     <div className="ZombieBuilder">
       <h1>Zombie Fighters</h1>
+      <div>Money: ${money}</div>
       <ul className="zombie-fighters-list">
           {zombieFighters.map((fighter, index) => (
             <li key={index} className="zombie-fighter">
